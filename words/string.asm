@@ -265,59 +265,39 @@ z_minus_leading:
 xt_minus_trailing:
                 jsr underflow_2
 w_minus_trailing:
-                ; if length entry is zero, return a zero and leave the
-                ; address part untouched
+                ; if length is zero we-re done
                 lda 0,x         ; LSB of n
                 ora 1,x         ; MSB of n
                 beq _done
 
-                ; Compute address of last char in tmp1 as
-                ; addr + u1 - 1
-
-                ; addr + u1
-                clc
-                lda 2,x         ; LSB of addr
-                adc 0,x
-                sta tmp1
-                lda 3,x         ; MSB of addr
-                adc 1,x
-                sta tmp1+1
-
-                ; - 1
-                lda tmp1
-                bne +
-                dec tmp1+1
-+
-                dec tmp1
+                ; Compute address of last char: addr + u1 - 1
+                jsr w_two_dup
+                jsr w_plus
+                jsr w_one_minus
+                ; ( addr u addr' )
 
 _loop:
-                ; While spaces are found, move tmp1 backwards and
+                ; While spaces are found, move backwards and
                 ; decrease the count on the data stack.
-                lda (tmp1)
-                cmp #AscSP
-                bne _done
+                lda (0,x)
+                jsr is_whitespace
+                bcc _drop_done
 
                 ; Move back one address.
-                lda tmp1
-                bne +
-                dec tmp1+1
-+
-                dec tmp1
+                jsr w_one_minus
 
                 ; Decrement count by one.
-                lda 0,x
+                lda 2,x
                 bne +
-                dec 1,x
+                dec 3,x
 +
-                dec 0,x
-
-                ; Check if there are any characters left.
-                lda 0,x
-                ora 1,x
-                beq _done       ; Count has reached zero - we're done!
-
-                bra _loop
-
+                dea
+                sta 2,x
+                ora 3,x         ; When count reaches zero - we're done!
+                bne _loop
+_drop_done:
+                inx             ; drop the end-of-string pointer
+                inx
 _done:
 z_minus_trailing:
                 rts
