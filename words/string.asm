@@ -246,8 +246,7 @@ _loop:
                 bcc _done
 
                 ; It's whitespace, move one down
-                jsr w_one              ; ( addr u 1 )
-                jsr w_slash_string     ; ( addr+ u-1 )
+                jsr slash_string_1      ; ( addr+1 u-1 )
 
                 bra _loop
 _done:
@@ -270,21 +269,20 @@ w_minus_trailing:
                 ora 1,x         ; MSB of n
                 beq _done
 
-                ; Compute address of last char: addr + u1 - 1
+                ; Compute address past last character: addr + u1
                 jsr w_two_dup
                 jsr w_plus
-                jsr w_one_minus
                 ; ( addr u addr' )
 
 _loop:
-                ; While spaces are found, move backwards and
-                ; decrease the count on the data stack.
+                ; Move back to point at last character
+                jsr w_one_minus
+
+                ; While spaces are found,
+                ; decrease the count on the data stack and repeat
                 lda (0,x)
                 jsr is_whitespace
                 bcc _drop_done
-
-                ; Move back one address.
-                jsr w_one_minus
 
                 ; Decrement count by one.
                 lda 2,x
@@ -293,7 +291,7 @@ _loop:
 +
                 dea
                 sta 2,x
-                ora 3,x         ; When count reaches zero - we're done!
+                ora 3,x         ; If count reaches zero - we're also done!
                 bne _loop
 _drop_done:
                 inx             ; drop the end-of-string pointer
@@ -499,6 +497,19 @@ w_slash_string:
                 inx
 
 z_slash_string: rts
+
+; for internal use we often need to remove a single character
+slash_string_1:       ; ( addr u -- addr+1 u-1)
+                inc 2,x
+                bne +
+                inc 3,x
++
+                lda 0,x
+                bne +
+                dec 1,x
++
+                dec 0,x
+rts
 
 
 
