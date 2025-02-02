@@ -7,7 +7,9 @@ c65-*.dat
 c65/c65
 c65/c65.exe
 docs/minimal-*.txt
+docs/sbmk3-*.txt
 docs/c65-*.txt
 taliforth-c65.bin
 taliforth-minimal.bin
+taliforth-sbmk3.bin
 tests/blocks.bin
