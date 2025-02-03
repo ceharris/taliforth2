@@ -54,13 +54,22 @@ TEST_SUITE=tests/core_a.fs tests/core_b.fs tests/core_c.fs tests/string.fs tests
     tests/tools.fs tests/block.fs tests/search.fs tests/user.fs tests/cycles.fs
 TEST_SOURCES=tests/talitest.py $(TEST_SUITE)
 
+PLATFORM=sbmk3
 C65=c65/c65
 C65_SOURCES=c65/*.c c65/*.h
 
-all: taliforth-py65mon.bin docs/WORDLIST.md
+LOAD_OFFSET=0xA000
+EXECUTION_ADDR=0xF000
+
+all: taliforth-$(PLATFORM).bin taliforth-$(PLATFORM).s19
+
 clean:
-	$(RM) *.bin *.prg
+	$(RM) *.bin *.prg *.s19
 	make -C c65 clean
+
+taliforth-%.s19: taliforth-%.bin
+	srec_cat $< -Binary -Offset $(LOAD_OFFSET) -Output -Motorola \
+		-execution-start-address=$(EXECUTION_ADDR) >$@
 
 taliforth-%.bin: platform/platform-%.asm $(COMMON_SOURCES)
 	64tass --nostart \

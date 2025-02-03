@@ -8,8 +8,4 @@
 c65-*.dat
 c65/c65
 c65/c65.exe
-docs/minimal-*.txt
-docs/c65-*.txt
-taliforth-c65.bin
-taliforth-minimal.bin
-tests/blocks.bin
+docs/*txt
