@@ -14,6 +14,7 @@ cp_end    = acia_buff      ; Last RAM byte available for code
                 .align 16
 
 
+TALI_OPTIONAL_WORDS := [ "ed", "editor", "ramdrive", "block", "environment?", "assembler", "disassembler", "wordlist" ]
 TALI_OPTION_CR_EOL := [ "cr", "lf" ]
 
 .include "../taliforth.asm" ; Top-level definitions, memory map
@@ -21,8 +22,6 @@ TALI_OPTION_CR_EOL := [ "cr", "lf" ]
 
 ; Put the I/O routines in the last 1K of ROM
                 * = $F000
-
-.include "acia.s"
 
 kernel_init:
                 jsr acia_init
@@ -62,9 +61,11 @@ _copy:
                 bne _copy
                 jmp BYE_VECTOR
 
+
+.include "acia.s"
+
 noop_isr:
                 rti
-
 
 ; Add the interrupt vectors
         * = $ffe0
