@@ -37,6 +37,7 @@ kernel_putc = acia_putc
 
 CONF_REG := $FFD8
 CONF_MMUE := $80
+MMU_SLOT0 = $FFC0
 IPL_VECTOR := $F000
 BYE_VECTOR := $F0
 
@@ -51,6 +52,8 @@ BYE_FN_LENGTH := *-bye_fn
 kernel_bye:
                 sei
                 jsr acia_shutdown
+		; put bank 0 in slot zero since we will disable MMU
+		stz MMU_SLOT0
                 ldx #BYE_FN_LENGTH
                 ldy #0
 _copy:
