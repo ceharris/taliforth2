@@ -8,11 +8,6 @@ acia_buff = hist_buff-$100 ; begin of ACIA buffer memory
 cp_end    = acia_buff      ; Last RAM byte available for code
 
         * = $A000
-                .word $CE5B
-                .byte 0,1,2,3,4,5,6,7,8,9,$8A,$8B,$8C,$8D,$8E,$8F
-                .word kernel_init
-                .align 16
-
 
 TALI_OPTIONAL_WORDS := [ "ed", "editor", "ramdrive", "block", "environment?", "assembler", "disassembler", "wordlist" ]
 TALI_OPTION_CR_EOL := [ "cr", "lf" ]
@@ -35,15 +30,16 @@ kernel_getc:
 kernel_kbhit = acia_kbhit
 kernel_putc = acia_putc
 
-CONF_REG := $FFD8
-CONF_MMUE := $80
-MMU_SLOT0 = $FFC0
+CONF_REG := $FFF4
+CONF_CURRENT_MODE := $70
+CONF_ENABLE_ROM := $DF
 IPL_VECTOR := $F000
 BYE_VECTOR := $F0
 
 bye_fn:
-                lda CONF_REG
-                and #~CONF_MMUE
+                ; renable the ROM
+                lda #CONF_CURRENT_MODE 
+                and #CONF_ENABLE_ROM
                 sta CONF_REG
                 jmp IPL_VECTOR
 
@@ -52,8 +48,6 @@ BYE_FN_LENGTH := *-bye_fn
 kernel_bye:
                 sei
                 jsr acia_shutdown
-		; put bank 0 in slot zero since we will disable MMU
-		stz MMU_SLOT0
                 ldx #BYE_FN_LENGTH
                 ldy #0
 _copy:
@@ -66,27 +60,16 @@ _copy:
 
 
 ACIA_PORT := $FFF0
-.include "acia.s"
-
+.include "acia.asm"
 
 noop_isr:
                 rti
 
-; Add the interrupt vectors
-        * = $ffe0
-        .word noop_isr                  ; IRQ0
-        .word noop_isr                  ; IRQ1
-        .word noop_isr                  ; IRQ2
-        .word acia_isr                  ; IRQ3 (ACIA)
-        .word noop_isr                  ; IRQ4
-        .word noop_isr                  ; IRQ5
-        .word noop_isr                  ; IRQ6
-        .word noop_isr                  ; IRQ7
-
+; Add the machine vectors
         * = $fffa
         .word noop_isr
         .word kernel_init
-        .word noop_isr
+        .word acia_isr
 
 
 ; END

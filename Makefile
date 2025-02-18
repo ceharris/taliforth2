@@ -54,14 +54,19 @@ TEST_SUITE=tests/core_a.fs tests/core_b.fs tests/core_c.fs tests/string.fs tests
     tests/tools.fs tests/block.fs tests/search.fs tests/user.fs tests/cycles.fs
 TEST_SOURCES=tests/talitest.py $(TEST_SUITE)
 
-PLATFORM=sbmk3
+PLATFORM=none
 C65=c65/c65
 C65_SOURCES=c65/*.c c65/*.h
 
 LOAD_OFFSET=0xA000
 EXECUTION_ADDR=0xF000
 
-all: taliforth-$(PLATFORM).bin taliforth-$(PLATFORM).s19
+.PHONY: clean all check
+
+all: platform-check taliforth-$(PLATFORM).bin taliforth-$(PLATFORM).s19
+
+platform-check:
+	@if [ "$(PLATFORM)" == "none" ]; then echo "Use 'make PLATFORM=<platform> ...' to build Taliforth2\n"; exit 1; fi
 
 clean:
 	$(RM) *.bin *.prg *.s19

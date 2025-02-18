@@ -1,6 +1,5 @@
 
 
-                ACIA_PORT = $FFD0
                 ACIA_CTRL = ACIA_PORT+0
                 ACIA_DATA = ACIA_PORT+1
 
