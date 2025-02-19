@@ -3755,7 +3755,9 @@ to do this (assuming <code>assembler-wordlist &gt;order</code> first):</p>
 <div class="listingblock">
 <div class="content">
 <pre>        : print-a-one  compiled
-        1 lda.#                 \ fails with "Stack underflow"</pre>
+        1 lda.#        \ fails here with "Stack underflow"
+        push-a
+        u. ;</pre>
 </div>
 </div>
 <div class="paragraph">

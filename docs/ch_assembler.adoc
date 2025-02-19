@@ -87,7 +87,9 @@ to do this (assuming `assembler-wordlist >order` first):
 
 ----
         : print-a-one  compiled
-        1 lda.#                 \ fails with "Stack underflow"
+        1 lda.#        \ fails here with "Stack underflow"
+        push-a
+        u. ;
 ----
 
 The problem is that the number `1` is compiled, and then the immediate word
