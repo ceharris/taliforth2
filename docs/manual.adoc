@@ -3,10 +3,11 @@ Sam Colwell; Scot W. Stevenson; Patrick Surry
 :doctype: book
 :keywords: forth, 6502, assembler, programming, 8-bit, vintage, retro
 :revnumber: 1.1
-:revdate: 03. Jul 2024
+:revdate: 2025-02-19
 :showtitle:
 :icons: font
 :toc: left
+:pdf-page-margin: [0.5in, 0.5in, 0.5in, 0.5in]
 
 Tali Forth 2 is a bare-metal ANS(ish) Forth for the 65c02 8-bit MPU. It aims
 to be, roughly in order of importance, easy to try out (just run the included

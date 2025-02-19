@@ -315,7 +315,7 @@ scenes, so we will use `move` to copy some strings into the buffer.
 `128 +         ( Move to line 2)` +
 `s" Hello!"` +
 `rot swap move ( Copy Hello! into line )` +
-`update        ( Tell Tali it's modified )` +
+`update        ( Tell Tali it\'s modified )` +
 
 
 These commands put the string "Hello!" onto line 2, which can be seen by running
@@ -350,7 +350,7 @@ Let's modify the data in block 3 now.
 `256 +         ( Move to line 4)` +
 `s" Hi there!"` +
 `rot swap move ( Copy string into line )` +
-`update        ( Tell Tali it's modified )` +
+`update        ( Tell Tali it\'s modified )` +
 
 After this code is run, the buffer will be modified, marked as updated/dirty,
 but once again it won't actually be saved back to mass storage right at this

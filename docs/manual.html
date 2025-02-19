@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author2" class="author">Scot W. Stevenson</span><br>
 <span id="author3" class="author">Patrick Surry</span><br>
 <span id="revnumber">version 1.1,</span>
-<span id="revdate">03. Jul 2024</span>
+<span id="revdate">2025-02-19</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2079,7 +2079,7 @@ scenes, so we will use <code>move</code> to copy some strings into the buffer.</
 <code>128 +         ( Move to line 2)</code><br>
 <code>s" Hello!"</code><br>
 <code>rot swap move ( Copy Hello! into line )</code><br>
-<code>update        ( Tell Tali it&#8217;s modified )</code><br></p>
+<code>update        ( Tell Tali it's modified )</code><br></p>
 </div>
 <div class="paragraph">
 <p>These commands put the string "Hello!" onto line 2, which can be seen by running
@@ -2126,7 +2126,7 @@ in the buffer, it will be marked as "in-use" with block 3 and "clean".</p>
 <code>256 +         ( Move to line 4)</code><br>
 <code>s" Hi there!"</code><br>
 <code>rot swap move ( Copy string into line )</code><br>
-<code>update        ( Tell Tali it&#8217;s modified )</code><br></p>
+<code>update        ( Tell Tali it's modified )</code><br></p>
 </div>
 <div class="paragraph">
 <p>After this code is run, the buffer will be modified, marked as updated/dirty,
@@ -4444,7 +4444,7 @@ hardware.</p>
 <div class="paragraph">
 <p>This tutorial shows how to interface some LEDs and pushbutton switches on a Ben
 Eater style 65C02 computer with a serial port (recommended for Tali) and the
-switches and LEDs wires to PORTA of a 65C22 Versatile Interface Adapter (VIA).
+switches and LEDs wired to PORTA of a 65C22 Versatile Interface Adapter (VIA).
 For this example, the VIA will be memory mapped starting at address $6000 and
 the LEDs and pushbutton switches will be wired as shown here.  If your hardware
 is different, you can adjust the Forth source code accordingly.</p>
@@ -4656,11 +4656,13 @@ advanced.  We&#8217;ll replace the LEDs and buttons with a character LCD screen.
 </div>
 <div class="paragraph">
 <p>This section shows how to interface with an LCD on a Ben Eater style 65C02
-computer with a serial port (recommended for Tali) and LCD wired to PORTA and PORTB of a
-65C22 as shown here: <a href="https://eater.net/schematics/6502.png" class="bare">https://eater.net/schematics/6502.png</a></p>
+computer with a serial port (serial is recommended for Tali) and an LCD wired to
+PORTA and PORTB of a 65C22 as shown here:</p>
 </div>
-<div class="paragraph">
-<p>TODO: Redraw schematic to show LCD wiring</p>
+<div class="imageblock">
+<div class="content">
+<img src="pics/tutorial_hardware_LCD.png" alt="tutorial hardware LCD">
+</div>
 </div>
 <div class="paragraph">
 <p>The important details are that the 65C22 Versatile Interface Adapter (called the
@@ -4815,7 +4817,7 @@ processed in microseconds.</p>
    %11111111 DDRB C!  \ Data lines all outputs
    \ Make only bits 5-7 outputs on Port A without affecting
    \ the other bits (they may be used for something else).
-   DDRA C@  %1110000 OR  DDRA C!
+   DDRA C@  %11100000 OR  DDRA C!
    \ Start sending commands to initialize the LCD.
    %00111000 LCD_Command \ This needs to be sent three times
    %00111000 LCD_Command \ for reliable software reset of
@@ -10629,7 +10631,7 @@ under <a href="https://www.ubuntu.com/">Ubuntu</a> Linux 16.04 LTS.</p>
 <div id="footer">
 <div id="footer-text">
 Version 1.1<br>
-Last updated 2024-08-21 20:10:01 -0400
+Last updated 2025-02-19 13:30:24 -0500
 </div>
 </div>
 </body>

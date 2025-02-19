@@ -6,7 +6,7 @@ hardware.
 
 This tutorial shows how to interface some LEDs and pushbutton switches on a Ben
 Eater style 65C02 computer with a serial port (recommended for Tali) and the
-switches and LEDs wires to PORTA of a 65C22 Versatile Interface Adapter (VIA).
+switches and LEDs wired to PORTA of a 65C22 Versatile Interface Adapter (VIA).
 For this example, the VIA will be memory mapped starting at address $6000 and
 the LEDs and pushbutton switches will be wired as shown here.  If your hardware
 is different, you can adjust the Forth source code accordingly.
@@ -190,10 +190,10 @@ With the above under our belt, we're ready to tackle something a bit more
 advanced.  We'll replace the LEDs and buttons with a character LCD screen.
 
 This section shows how to interface with an LCD on a Ben Eater style 65C02
-computer with a serial port (recommended for Tali) and LCD wired to PORTA and PORTB of a
-65C22 as shown here: https://eater.net/schematics/6502.png
+computer with a serial port (serial is recommended for Tali) and an LCD wired to
+PORTA and PORTB of a 65C22 as shown here:
 
-TODO: Redraw schematic to show LCD wiring
+image::pics/tutorial_hardware_LCD.png[]
 
 The important details are that the 65C22 Versatile Interface Adapter (called the
 VIA from here on) is memory mapped starting at address $6000, the LCD DB0-7
