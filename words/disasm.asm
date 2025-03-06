@@ -179,8 +179,9 @@ _is_rel:
                 ; treat opr as signed byte and add to addr following operand: (addr+1) + 1
                 ; scratch+1 contains the operand (offset), stack has (addr+1 u-1)
                 ldy #'v'            ; we'll indicate branch forward or back with v or ^
-                lda scratch+1
+                lda scratch+1       ; Put offset on stack
                 jsr push_a_tos
+                lda scratch+1       ; Check for negative
                 bpl +
                 dec 1,x             ; for negative offsets extend the sign bit so add works out
                 ldy #'^'            ; it's a backward branch
