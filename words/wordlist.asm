@@ -335,15 +335,12 @@ w_search_wordlist:
                 beq _drop_fail
 
                 ; set up first loop iteration
-                lda (tmp2)              ; nt of first word in Dictionary
-                sta tmp1
-
-                inc tmp2                ; Move to the upper byte
-                bne +
-                inc tmp2+1
-+
-                lda (tmp2)
-                sta tmp1+1
+                ldy #1
+-
+                lda (tmp2),y             ; nt of first word in Dictionary
+                sta tmp1,y
+                dey
+                bpl -
 
                 jsr find_nt_by_name
                 beq _drop_fail
