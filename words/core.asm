@@ -6676,7 +6676,7 @@ _page:
 z_type:         rts
 
 
-; 20141 / ticks=176074741
+
 
 ; ## U_DOT ( u -- ) "Print TOS as unsigned number"
 ; ## "u."  tested  ANS core
