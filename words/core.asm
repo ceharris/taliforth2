@@ -6677,7 +6677,6 @@ z_type:         rts
 
 
 
-
 ; ## U_DOT ( u -- ) "Print TOS as unsigned number"
 ; ## "u."  tested  ANS core
         ; """https://forth-standard.org/standard/core/Ud
