@@ -6652,30 +6652,22 @@ w_type:
                 sta tmp1
                 lda 3,x
                 sta tmp1+1
-_loop:
-                ; done if length is zero
-                lda 0,x
-                ora 1,x
-                beq _done
 
-                ; Send the current character
-                lda (tmp1)
+                lda 0,x         ; partial page to do?
+                beq +
+_page:
+                ldy #0
+-
+                lda (tmp1),y
                 jsr emit_a      ; avoids stack foolery
-
-                ; Move the address along (in tmp1)
-                inc tmp1
-                bne +
-                inc tmp1+1
-+
-                ; Reduce the count (on the data stack)
-                lda 0,x
-                bne +
-                dec 1,x
-+
+                iny
                 dec 0,x
+                bne -
++
+                dec 1,x
+                bpl _page       ; assume N < 32Kb
 
-                bra _loop
-_done:
+                ; clean up the stack
                 inx
                 inx
                 inx
@@ -6684,6 +6676,7 @@ _done:
 z_type:         rts
 
 
+; 20141 / ticks=176074741
 
 ; ## U_DOT ( u -- ) "Print TOS as unsigned number"
 ; ## "u."  tested  ANS core
