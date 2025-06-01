@@ -92,7 +92,9 @@ s_see_cfapfa: .shift "CFA 3  PFA "
 
 ; this string is referenced directly, not via string table
 ; must match DICTIONARY FLAGS in definitions.asm and calculated flag order in xt_see
-see_flags_template:     .shift "flags: HC",0,"NN",0,"AN",0,"IM",0,"CO",0,"DC",0,"LC",0,"FP",0,"| UF",0,"ST",0
+; hi-bit (shift) characters indicate flag insertion points, terminated by (shifted) NUL
+see_flags_template:
+        .text "flags: HC", s"N","N", s"A","N", s"I", "M", s"C","O", s"D","C", s"L","C", s"F","P", s"|"," UF", s"S","T", $80
 
 .if "disassembler" in TALI_OPTIONAL_WORDS
 s_disasm_sdc: .shift " STACK DEPTH CHECK"

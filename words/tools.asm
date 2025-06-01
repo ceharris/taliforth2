@@ -321,8 +321,8 @@ _show_header:
                 bra -
 +
 .endif
-                ; use a high-bit terminated template string to show flag names
-                ; and insert flag values at placeholders marked by ascii zeros
+                ; use a zero-terminated template string to show flag names with placeholders
+                ; marked by shifted characters
                 lda #<see_flags_template
                 sta tmp3                ; LSB
                 lda #>see_flags_template
@@ -331,12 +331,11 @@ _show_header:
                 ldy #0                  ; index the string
 _show_flags:
                 lda (tmp3),y            ; next char in template
-                bpl +                   ; end of string?
+                bpl _emit               ; normal char?  just show it
 
-                ldy #$ff                ; flag end of loop
-                and #$7f                ; clear high bit of A to get last character
-+
-                bne _emit               ; flag placeholder?
+                ; otherwise insert a flag first
+                and #$7f                ; clear hi bit and save next char
+                pha
 
                 ; for each flag, print "<space><flag><space>"
                 jsr w_space             ; no stack effect
@@ -351,13 +350,16 @@ _synthetic:
                 lda #'0'                ; convert C=0/1 into '0' or '1'
                 adc #0
                 jsr emit_a              ; write the flag digit
+                jsr w_space             ; and a space
 
-                lda #' '                ; fall through and add trailing space
+                pla                     ; recover next character
+                beq _done
 _emit:
                 jsr emit_a
 
                 iny
                 bne _show_flags
+_done:
 
                 jsr w_cr
 
