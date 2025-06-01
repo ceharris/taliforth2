@@ -334,7 +334,7 @@ _show_flags:
                 bpl _emit               ; normal char?  just show it
 
                 ; otherwise insert a flag first
-                and #$7f                ; clear hi bit and save next char
+                and #$7f                ; clear hi bit and save char that follows flag
                 pha
 
                 ; for each flag, print "<space><flag><space>"
@@ -352,7 +352,7 @@ _synthetic:
                 jsr emit_a              ; write the flag digit
                 jsr w_space             ; and a space
 
-                pla                     ; recover next character
+                pla                     ; recover following character
                 beq _done
 _emit:
                 jsr emit_a
