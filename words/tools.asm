@@ -43,7 +43,7 @@ w_dot_s:
                 sta 0,x
                 stz 1,x
 
-                jsr print_u
+                jsr print_tos
 
                 lda #'>'
                 jsr emit_a
@@ -252,7 +252,7 @@ w_see:
                 jsr w_hex
 
                 lda #str_see_nt
-                jsr print_string_no_lf
+                jsr print_string_n
 
                 jsr w_dup               ; ( nt nt )
                 jsr w_u_dot
@@ -262,14 +262,14 @@ w_see:
                 jsr w_name_to_int       ; ( nt xt )
 
                 lda #str_see_xt
-                jsr print_string_no_lf
+                jsr print_string_n
 
                 jsr w_dup               ; ( nt xt xt )
                 jsr w_u_dot             ; ( nt xt )
                 jsr w_space
 
                 lda #str_see_header
-                jsr print_string_no_lf
+                jsr print_string_n
                 jsr w_over
                 ; calculate header length from status flag byte
                 lda (0,x)               ; fetch status byte
@@ -368,7 +368,7 @@ _done:
 
                 ; Figure out the size
                 lda #str_see_size
-                jsr print_string_no_lf
+                jsr print_string_n
 
                 jsr w_swap              ; ( xt nt )
                 jsr w_wordsize          ; ( xt u )
@@ -382,7 +382,7 @@ _done:
                 beq +
 
                 lda #str_see_cfapfa
-                jsr print_string_no_lf  ; print "CFA: 3  PFA: "
+                jsr print_string_n  ; print "CFA: 3  PFA: "
 
                 sec
                 lda 0,x                 ; reduce to u-3

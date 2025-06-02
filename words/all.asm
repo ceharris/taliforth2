@@ -212,7 +212,7 @@ _stack_ok:
 
                 lda #1                  ; number for "compile" string
 _print:
-                jsr print_string_no_lf
+                jsr print_string_n
                 jsr w_cr
 
                 ; Awesome line, everybody! Now get the next one.

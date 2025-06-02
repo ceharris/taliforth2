@@ -314,7 +314,7 @@ _found_handler:
                 jsr emit_a                  ; print the char stored as (ch - 32) << 2
 _no_prefix:
                 lda _special_handlers+2,y   ; string index
-                jsr print_string_no_lf
+                jsr print_string_n
                 pla
                 and #3                      ; payload is 0, 1 or 2 words
                 beq _done

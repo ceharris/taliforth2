@@ -225,9 +225,9 @@ order_print_wid_string:
         ; corresponding string. If there is no such word list defined, just
         ; print the number. Assumes we will not have more than 256 WIDs; also
         ; assumes we have just loaded A so Z reflects status of byte.  In
-        ; theory, we could speed this up by having the WID be the same as the
-        ; number of the strings. However, ORDER is used rather infrequently and
-        ; this would make changes to the strings.asm file very dangerous, so we
+        ; theory, we could speed this up by having the WID be the same as
+        ; string table index. However, ORDER is used rather infrequently and
+        ; this would make changes to the stringtable.asm file very dangerous, so we
         ; follow the slightly more complicated route with a translation table.
         ; """
                 ; If the WID is larger than 3, we have no string avaliable and
@@ -239,10 +239,7 @@ order_print_wid_string:
 
                 ; Our WID is not less than 4, that is, 4 or larger. We just
                 ; print the number
-                dex
-                dex
-                sta 0,x
-                stz 1,x
+                jsr push_a_tos
                 jmp w_u_dot            ; JSR/RTS as this routine is not compiled
 
 _output_string:
@@ -251,11 +248,10 @@ _output_string:
                 lda _wid_data,y
 
                 ; Print without a line feed
-                jmp print_string_no_lf  ; JSR/RTS as this routine is not compiled
+                jmp print_string_n  ; JSR/RTS as this routine is not compiled
 
 _wid_data:
-        ; Table of string numbers (see strings.asm) indexed by the WID if
-        ; less than 4.
+        ; Table of string numbers for word list names 0-3 (see stringtable.asm)
         .byte str_wid_forth            ; WID 0: "Forth "
         .byte str_wid_editor           ; WID 1: "Editor "
         .byte str_wid_assembler        ; WID 2: "Assembler "

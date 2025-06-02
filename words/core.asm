@@ -618,11 +618,11 @@ w_at_xy:
                 lda #'['
                 jsr emit_a
                 jsr w_one_plus ; AT-XY is zero based, but ANSI is 1 based
-                jsr print_u
+                jsr print_tos
                 lda #';'
                 jsr emit_a
                 jsr w_one_plus ; AT-XY is zero based, but ANSI is 1 based
-                jsr print_u
+                jsr print_tos
                 lda #'H'
                 jsr emit_a
 
@@ -1182,7 +1182,7 @@ _too_long:
 _redefined_name:
                 ; Print the message that the name is redefined.
                 lda #str_redefined
-                jsr print_string_no_lf
+                jsr print_string_n
 
                 jsr w_two_dup           ; ( cfa addr u addr u )
                 jsr w_type
@@ -2103,7 +2103,7 @@ z_environment_q:
 
 ; Tables for ENVIRONMENT?. We use two separate ones, one for the single-cell
 ; results and one for the double-celled results. The strings themselves
-; are defined consecutively in strings.asm so that we can calculate
+; are defined consecutively in stringtable.asm so that we can calculate
 ; length as the difference in offsets.
 
 env_table_single:
@@ -5309,7 +5309,7 @@ _setsz:
                 jsr w_name_to_string    ; ( nt -- addr u )
 
                 lda #str_redefined      ; address of string "redefined"
-                jsr print_string_no_lf
+                jsr print_string_n
 
                 ; Now we print the offending word.
                 jsr w_type
@@ -6693,13 +6693,13 @@ z_type:         rts
         ; """https://forth-standard.org/standard/core/Ud
         ;
         ; This is : U. 0 <# #S #> TYPE SPACE ; in Forth
-        ; We use the internal assembler function print_u followed
+        ; We use the internal assembler function print_tos followed
         ; by a single space
         ; """
 xt_u_dot:
                 jsr underflow_1
 w_u_dot:
-                jsr print_u
+                jsr print_tos
                 lda #AscSP
                 jsr emit_a
 

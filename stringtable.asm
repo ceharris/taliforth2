@@ -71,7 +71,7 @@ string_table:
 .endif
 
 ; note .shift is like .text but terminates the string by setting bit 7 of the last character
-; print_common in taliforth.asm shows how we use these
+; print_shift_string in taliforth.asm shows how we use these
 
 s_ok:         .shift " ok"              ; note space at beginning
 s_compiled:   .shift " compiled"        ; note space at beginning
