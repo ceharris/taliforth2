@@ -905,7 +905,7 @@ print_tos:
         ; """basic printing routine used by higher-level constructs,
         ; the equivalent of the forth word  0 <# #s #> type  which is
         ; basically u. without the space at the end. used for various
-        ; outputs
+        ; outputs.   Compare w
         ; """
                 jsr w_zero                     ; 0
                 jsr w_less_number_sign         ; <#

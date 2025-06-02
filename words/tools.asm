@@ -38,17 +38,13 @@ w_dot_s:
                 pha
 
                 ; print unsigned number without the trailing space
-                dex             ; DUP
-                dex
-                sta 0,x
-                stz 1,x
+                jsr w_dup
 
                 jsr print_tos
 
                 lda #'>'
                 jsr emit_a
-                lda #AscSP      ; ASCII for SPACE
-                jsr emit_a
+                jsr w_space
 
                 inx
                 inx

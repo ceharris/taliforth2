@@ -6700,8 +6700,7 @@ xt_u_dot:
                 jsr underflow_1
 w_u_dot:
                 jsr print_tos
-                lda #AscSP
-                jsr emit_a
+                jsr w_space
 
 z_u_dot:        rts
 

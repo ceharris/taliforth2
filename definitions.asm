@@ -263,7 +263,7 @@ OpBITzp = $24   ; used to save a branch occasionally
 
 N_FLAGS = 8
 
-; This list should match s_see_flags in strings.asm.  See words/headers.asm for details.
+; This list should match s_see_flags in stringtable.asm.  See words/headers.asm for details.
 
 FP = 1                      ; Far previous NT (LSB/MSB not just LSB within previous page)
 LC = 2                      ; Long code (two byte vs one byte length for native compile)
