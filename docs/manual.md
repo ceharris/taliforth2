@@ -301,7 +301,7 @@ go and read Leo Brodie’s excellent "Starting Forth", available for
 free online, before continuing through this manual. You can use Tali
 Forth 2 to run the examples given in the book.
 
-You will also want to refer to Tali’s [Glossary](#_glossary) for the list of words that
+You will also want to refer to Tali’s [Glossary of Forth Words](#_glossary_of_forth_words) for the list of words that
 Tali Forth 2 comes with. If you are just starting out, you will need to refer
 to this when deciding what words to use or to look up what a particular word does.
 
@@ -342,7 +342,7 @@ entry, press `CONTROL-n`.
 
 ### Words
 
-The [Glossary](#_glossary) contains a list of all the words Tali comes with, where they come from,
+The [Glossary of Forth Words](#_glossary_of_forth_words) contains a list of all the words Tali comes with, where they come from,
 their stack usage (as a stack comment), and a brief description of what each word does.
 
 Tali Forth comes with the following Forth words out of the
@@ -383,7 +383,7 @@ the native words <span class="indexterm" primary="native words"></span> — 
 with `drop` and end with `bye`. `bye` is the last word that Tali will find in
 the dictionary. [^2] The words before `drop` are those that are defined in high-level
 Forth. For more information on individual words, use the `see` command inside
-Tali Forth and refer to the [Glossary](#_glossary).
+Tali Forth and refer to the [Glossary of Forth Words](#_glossary_of_forth_words).
 
 > [!TIP]
 > To find out if a given word is available, you can use the sequence
@@ -4451,10 +4451,7 @@ See the GitHub page for further details.
 
 # Appendix
 
-## Glossary
-
-Error determining name on line:
-; \## KEY? ( — char ) "Return true if a character is available"
+## Glossary of Forth Words
 
 |  |  |
 |----|----|
@@ -5010,6 +5007,7 @@ Copy second loop counter from Return Stack to stack. Note we use
 a fudge factor for loop control; see the Control Flow section of
 the manual for more details. |
 | `key` | *ANS core* ( — char ) "Get one character from the input" |
+| `key?` | *ANS core* ( — char ) "Return true if a character is available" |
 | `l` | *Tali Editor* ( — ) "List the current screen"
 note "l" is used by LIST in the block words |
 | `latestnt` | *Tali Forth* ( — nt ) "Push most recent nt to the stack"

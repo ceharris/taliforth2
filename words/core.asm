@@ -2824,7 +2824,7 @@ key_a:
                 jmp (input)             ; JSR/RTS
 
 
-; ## KEY? ( -- char ) "Return true if a character is available"
+; ## KEY_QUESTION ( -- char ) "Return true if a character is available"
 ; ## "key?"  tested  ANS core
 xt_keyq:
 w_keyq:

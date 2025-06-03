@@ -1,6 +1,3 @@
-Error determining name on line:
-; ## KEY? ( -- char ) "Return true if a character is available"
-
 [horizontal]
 `!`:: _ANS core_ ( n addr -- ) "Store TOS in memory"
 https://forth-standard.org/standard/core/Store
@@ -722,6 +719,7 @@ a fudge factor for loop control; see the Control Flow section of
 the manual for more details.
 
 `key`:: _ANS core_ ( -- char ) "Get one character from the input"
+`key?`:: _ANS core_ ( -- char ) "Return true if a character is available"
 `l`:: _Tali Editor_ ( -- ) "List the current screen"
 note "l" is used by LIST in the block words
 

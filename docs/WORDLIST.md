@@ -158,7 +158,7 @@ RTS instruction at the end of each word.
 | IS | `is` | ANS core ext | 24 | **auto** |
 | J | `j` | ANS core | 25 | **auto** |
 | KEY | `key` | ANS core | 9 | tested |
-| KEY? | `key?` | ANS core | missing | tested |
+| KEY_QUESTION | `key?` | ANS core | missing | tested |
 | LEAVE | `leave` | ANS core | 21 | **auto** |
 | LEFT_BRACKET | `[` | ANS core | 4 | **auto** |
 | LESS_NUMBER_SIGN | `<#` | ANS core | 13 | **auto** |
