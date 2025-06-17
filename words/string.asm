@@ -226,9 +226,10 @@ z_compare:      rts
 
 
 
-; ## MINUS_LEADING ( addr1 u1 -- addr2 u2 ) "Remove leading spaces"
+; ## MINUS_LEADING ( addr1 u1 -- addr2 u2 ) "Remove leading whitespace"
 ; ## "-leading"  auto  Tali String
-        ; """Remove leading whitespace. This is the reverse of -TRAILING
+        ; """Remove leading whitespace. This is the reverse of -TRAILING except
+        ; that it removes any whitespace, not just BL
         ; """
 
 xt_minus_leading:
@@ -258,13 +259,14 @@ z_minus_leading:
 ; ## MINUS_TRAILING ( addr u1 -- addr u2 ) "Remove trailing spaces"
 ; ## "-trailing"  auto  ANS string
         ; """https://forth-standard.org/standard/string/MinusTRAILING
-        ; Remove trailing spaces
+        ; Remove trailing spaces.  Note this ANSI word only removes ASCII $20
+        ; not other whitespace like -LEADING.
         ; """
 
 xt_minus_trailing:
                 jsr underflow_2
 w_minus_trailing:
-                ; if length is zero we-re done
+                ; if length is zero we're done
                 lda 0,x         ; LSB of n
                 ora 1,x         ; MSB of n
                 beq _done
@@ -281,8 +283,8 @@ _loop:
                 ; While spaces are found,
                 ; decrease the count on the data stack and repeat
                 lda (0,x)
-                jsr is_whitespace
-                bcc _drop_done
+                cmp #AscSP
+                bne _drop_done
 
                 ; Decrement count by one.
                 lda 2,x
