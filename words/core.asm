@@ -6664,9 +6664,12 @@ _page:
                 dec 0,x
                 bne -
 +
-                dec 1,x
-                bpl _page       ; assume N < 32Kb
+                lda 1,x         ; See if we are done
+                beq _cleanup
+                dec 1,x         ; Not done - do another page
+                bra _page
 
+_cleanup:
                 ; clean up the stack
                 inx
                 inx
