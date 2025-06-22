@@ -7438,8 +7438,9 @@ Store TOS at current place in memory.</p>
 <code>-leading</code>
 </td>
 <td class="hdlist2">
-<p><em>Tali String</em> ( addr1 u1&#8201;&#8212;&#8201;addr2 u2 ) "Remove leading spaces"
-Remove leading whitespace. This is the reverse of -TRAILING</p>
+<p><em>Tali String</em> ( addr1 u1&#8201;&#8212;&#8201;addr2 u2 ) "Remove leading whitespace"
+Remove leading whitespace. This is the reverse of -TRAILING except
+that it removes any whitespace, not just BL</p>
 </td>
 </tr>
 <tr>
@@ -7458,7 +7459,8 @@ Remove leading whitespace. This is the reverse of -TRAILING</p>
 <td class="hdlist2">
 <p><em>ANS string</em> ( addr u1&#8201;&#8212;&#8201;addr u2 ) "Remove trailing spaces"
 <a href="https://forth-standard.org/standard/string/MinusTRAILING" class="bare">https://forth-standard.org/standard/string/MinusTRAILING</a>
-Remove trailing spaces</p>
+Remove trailing spaces.  Note this ANSI word only removes ASCII $20
+not other whitespace like -LEADING.</p>
 </td>
 </tr>
 <tr>
@@ -8862,6 +8864,8 @@ the 8-bit.</p>
 </td>
 <td class="hdlist2">
 <p><em>ANS core</em> ( xt&#8201;&#8212;&#8201;) "Jump to word based on execution token"
+This word is never natively compiled so that the return
+from the xt will always return to the caller of EXECUTE
 <a href="https://forth-standard.org/standard/core/EXECUTE" class="bare">https://forth-standard.org/standard/core/EXECUTE</a></p>
 </td>
 </tr>
@@ -10635,7 +10639,7 @@ under <a href="https://www.ubuntu.com/">Ubuntu</a> Linux 16.04 LTS.</p>
 <div id="footer">
 <div id="footer-text">
 Version 1.1<br>
-Last updated 2025-06-03 12:09:12 -0400
+Last updated 2025-06-22 15:42:18 -0400
 </div>
 </div>
 </body>

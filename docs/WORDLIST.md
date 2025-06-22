@@ -7,23 +7,18 @@ RTS instruction at the end of each word.
 
 | NAME | FORTH WORD | SOURCE | BYTES | STATUS |
 | :--- | :--------- | :---   | ----: | :----  |
+| CMOVE | `cmove` | ANS string | 58 | **auto** |
+| CMOVE_UP | `cmove>` | ANS string | 58 | **auto** |
+| COMPARE | `compare` | ANS string | 100 | **auto** |
+| MINUS_LEADING | `-leading` | Tali String | 21 | **auto** |
+| MINUS_TRAILING | `-trailing` | ANS string | 39 | **auto** |
+| SEARCH | `search` | ANS string | 158 | **auto** |
+| SLASH_STRING | `/string` | ANS string | 31 | **auto** |
+| SLITERAL | `sliteral` | ANS string | 32 | **auto** |
+| COLD | `cold` | Tali Forth | 164 | tested |
+| ABORT | `abort` | ANS core | 79 | tested |
+| QUIT | `quit` | ANS core | 77 | tested |
 | COMPILE_COMMA | `compile,` | ANS core ext | 171 | **auto** |
-| COLD | `cold` | Tali Forth | 169 | tested |
-| ABORT | `abort` | ANS core | 84 | tested |
-| QUIT | `quit` | ANS core | 82 | tested |
-| BYE | `bye` | ANS tools ext | 3 | tested |
-| DOT_S | `.s` | ANS tools | 67 | **auto** |
-| DUMP | `dump` | ANS tools | 125 | **auto** |
-| QUESTION | `?` | ANS tools | 6 | **auto** |
-| SEE | `see` | ANS tools | 244 | **auto** |
-| WORDS | `words` | ANS tools | 100 | **auto** |
-| EDITOR_ENTER_SCREEN | `enter-screen` | Tali Editor | 27 | **auto** |
-| EDITOR_ERASE_SCREEN | `erase-screen` | Tali Editor | 17 | tested |
-| EDITOR_EL | `el` | Tali Editor | 17 | tested |
-| EDITOR_L | `l` | Tali Editor | 117 | tested |
-| EDITOR_LINE | `line` | Tali Editor | 24 | tested |
-| EDITOR_O | `o` | Tali Editor | 69 | tested |
-| DISASM | `disasm` | Tali Forth | 6 | **auto** |
 | D_MINUS | `d-` | ANS double | 32 | **auto** |
 | D_PLUS | `d+` | ANS double | 32 | **auto** |
 | D_TO_S | `d>s` | ANS double | 5 | **auto** |
@@ -41,7 +36,7 @@ RTS instruction at the end of each word.
 | ALWAYS_NATIVE | `always-native` | Tali Forth | 11 | **auto** |
 | BELL | `bell` | Tali Forth | 5 | **auto** |
 | BOUNDS | `bounds` | Gforth | 24 | **auto** |
-| CLEAVE | `cleave` | Tali Forth | 76 | **auto** |
+| CLEAVE | `cleave` | Tali Forth | 43 | **auto** |
 | DIGIT_QUESTION | `digit?` | Tali Forth | 24 | **auto** |
 | EXECUTE_PARSING | `execute-parsing` | Gforth | 38 | **auto** |
 | FIND_NAME | `find-name` | Gforth | 75 | **auto** |
@@ -66,23 +61,6 @@ RTS instruction at the end of each word.
 | USERADDR | `useraddr` | Tali Forth | 10 | tested |
 | WORDSIZE | `wordsize` | Tali Forth | 39 | **auto** |
 | ZERO | `0` | Tali Forth | 6 | **auto** |
-| ALSO | `also` | ANS search ext | 15 | **auto** |
-| ASSEMBLER_WORDLIST | `assembler-wordlist` | Tali Assembler | 8 | tested |
-| DEFINITIONS | `definitions` | ANS search | 8 | **auto** |
-| EDITOR_WORDLIST | `editor-wordlist` | Tali Editor | 8 | tested |
-| FORTH | `forth` | ANS search ext | 6 | **auto** |
-| FORTH_WORDLIST | `forth-wordlist` | ANS search | 6 | **auto** |
-| GET_CURRENT | `get-current` | ANS search | 10 | **auto** |
-| GET_ORDER | `get-order` | ANS search | 40 | **auto** |
-| ONLY | `only` | ANS search ext | 6 | **auto** |
-| ORDER | `order` | ANS core | 42 | **auto** |
-| PREVIOUS | `previous` | ANS search ext | 12 | **auto** |
-| ROOT_WORDLIST | `root-wordlist` | Tali Editor | 8 | tested |
-| SEARCH_WORDLIST | `search-wordlist` | ANS search | 96 | **auto** |
-| SET_CURRENT | `set-current` | ANS search | 11 | **auto** |
-| SET_ORDER | `set-order` | ANS search | 43 | **auto** |
-| TO_ORDER | `>order` | Gforth search | 18 | **auto** |
-| WORDLIST | `wordlist` | ANS search | 22 | **auto** |
 | ABORT_QUOTE | `abort"` | ANS core | 10 | tested |
 | ABS | `abs` | ANS core | 20 | **auto** |
 | ACCEPT | `accept` | ANS core | 248 | **auto** |
@@ -140,7 +118,7 @@ RTS instruction at the end of each word.
 | BLANK | `blank` | ANS string | 90 | **auto** |
 | ERASE | `erase` | ANS core ext | 77 | **auto** |
 | FILL | `fill` | ANS core | 66 | **auto** |
-| EXECUTE | `execute` | ANS core | 6 | **auto** |
+| EXECUTE | `execute` | ANS core | 16 | **auto** |
 | EXIT | `exit` | ANS core | 1 | **auto** |
 | FALSE | `false` | ANS core ext | 6 | **auto** |
 | FETCH | `@` | ANS core | 18 | **auto** |
@@ -241,8 +219,8 @@ RTS instruction at the end of each word.
 | TWO_STORE | `2!` | ANS core | 37 | **auto** |
 | TWO_SWAP | `2swap` | ANS core | 35 | **auto** |
 | TWO_TO_R | `2>r` | ANS core ext | 29 | **auto** |
-| TYPE | `type` | ANS core | 42 | **auto** |
-| U_DOT | `u.` | ANS core | 11 | tested |
+| TYPE | `type` | ANS core | 39 | **auto** |
+| U_DOT | `u.` | ANS core | 9 | tested |
 | U_DOT_R | `u.r` | ANS core ext | 33 | tested |
 | U_GREATER_THAN | `u>` | ANS core ext | 21 | **auto** |
 | U_LESS_THAN | `u<` | ANS core | 21 | **auto** |
@@ -261,6 +239,35 @@ RTS instruction at the end of each word.
 | ZERO_GREATER | `0>` | ANS core ext | 19 | **auto** |
 | ZERO_LESS | `0<` | ANS core | 15 | **auto** |
 | ZERO_UNEQUAL | `0<>` | ANS core ext | 15 | **auto** |
+| BYE | `bye` | ANS tools ext | 3 | tested |
+| DOT_S | `.s` | ANS tools | 62 | **auto** |
+| DUMP | `dump` | ANS tools | 125 | **auto** |
+| QUESTION | `?` | ANS tools | 6 | **auto** |
+| SEE | `see` | ANS tools | 245 | **auto** |
+| WORDS | `words` | ANS tools | 100 | **auto** |
+| EDITOR_ENTER_SCREEN | `enter-screen` | Tali Editor | 27 | **auto** |
+| EDITOR_ERASE_SCREEN | `erase-screen` | Tali Editor | 17 | tested |
+| EDITOR_EL | `el` | Tali Editor | 17 | tested |
+| EDITOR_L | `l` | Tali Editor | 117 | tested |
+| EDITOR_LINE | `line` | Tali Editor | 24 | tested |
+| EDITOR_O | `o` | Tali Editor | 69 | tested |
+| ALSO | `also` | ANS search ext | 15 | **auto** |
+| ASSEMBLER_WORDLIST | `assembler-wordlist` | Tali Assembler | 8 | tested |
+| DEFINITIONS | `definitions` | ANS search | 8 | **auto** |
+| EDITOR_WORDLIST | `editor-wordlist` | Tali Editor | 8 | tested |
+| FORTH | `forth` | ANS search ext | 6 | **auto** |
+| FORTH_WORDLIST | `forth-wordlist` | ANS search | 6 | **auto** |
+| GET_CURRENT | `get-current` | ANS search | 10 | **auto** |
+| GET_ORDER | `get-order` | ANS search | 40 | **auto** |
+| ONLY | `only` | ANS search ext | 6 | **auto** |
+| ORDER | `order` | ANS core | 42 | **auto** |
+| PREVIOUS | `previous` | ANS search ext | 12 | **auto** |
+| ROOT_WORDLIST | `root-wordlist` | Tali Editor | 8 | tested |
+| SEARCH_WORDLIST | `search-wordlist` | ANS search | 96 | **auto** |
+| SET_CURRENT | `set-current` | ANS search | 11 | **auto** |
+| SET_ORDER | `set-order` | ANS search | 43 | **auto** |
+| TO_ORDER | `>order` | Gforth search | 18 | **auto** |
+| WORDLIST | `wordlist` | ANS search | 22 | **auto** |
 | BLK | `block` | ANS block | 5 | **auto** |
 | BLKBUFFER | `blkbuffer` | Tali block | 13 | **auto** |
 | BLOCK | `block` | ANS block | 82 | **auto** |
@@ -282,14 +289,7 @@ RTS instruction at the end of each word.
 | THRU | `thru` | ANS block ext | 68 | tested |
 | UPDATE | `update` | ANS block | 8 | **auto** |
 | ED | `ed:` | Tali Forth | 3 | *fragment* |
-| CMOVE | `cmove` | ANS string | 58 | **auto** |
-| CMOVE_UP | `cmove>` | ANS string | 58 | **auto** |
-| COMPARE | `compare` | ANS string | 100 | **auto** |
-| MINUS_LEADING | `-leading` | Tali String | 24 | **auto** |
-| MINUS_TRAILING | `-trailing` | ANS string | 60 | **auto** |
-| SEARCH | `search` | ANS string | 158 | **auto** |
-| SLASH_STRING | `/string` | ANS string | 31 | **auto** |
-| SLITERAL | `sliteral` | ANS string | 32 | **auto** |
+| DISASM | `disasm` | Tali Forth | 6 | **auto** |
 
 Found **283** native words in `words/*.asm`.
 Of those, **245** were automatically tested and
