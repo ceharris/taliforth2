@@ -209,6 +209,29 @@ so that any subequent call to KEY would block until a key is actually ready.
 Your platform configuration should define the 6502 NMI, Reset and IRQ vectors
 at $fffa-$ffff.  Typically at least Reset ($fffc) should point to `kernel_init`.
 
+### Supporting User Interrupt (e.g. Ctrl-C to break)
+
+If your platform has support for hardware interrupts, you can easily
+support the ability for a user to stop running (runaway?) code and return to
+the input prompt.
+
+For platforms that have an interrupt-driven serial console, this can be
+implemented by checking to see if an input character read in the interrupt
+service routine is the "break" key (e.g. Ctrl-C). If so, instead of
+buffering the input character and returning from the interrupt, remove
+the return address and the program status word from the stack, set A to the
+error code `err_usersigint` (see `stringtable.asm`) and jump to Taliforth's
+`error` re-entry point. The "user interrupt" error message will be displayed
+and Taliforth will await the next input from the user. You may also wish to
+flush the input buffer before jumping to `error`.
+
+Any other mechanism that can respond to a hardware input via an interrupt
+service routine could be used in a similar manner to allow a user to
+interrupt running code and return to the prompt. For example, the 6502's
+NMI input could be used with a simple push-button that vectors to code that
+cleans up the stack and jumps to `error` as described above.
+
+
 ## Contributing
 
 To submit your configuration file, pick a name with the form `platform-*.asm`
